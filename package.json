@@ -1,0 +1,24 @@
+{
+  "name": "wayfarer-app",
+  "version": "1.0.0",
+  "description": "A public transportation booking application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manlikezlatan/Wayfarer-App.git"
+  },
+  "keywords": [
+    "trips",
+    "booking",
+    "transportation"
+  ],
+  "author": "Ibrahim Babatunde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manlikezlatan/Wayfarer-App/issues"
+  },
+  "homepage": "https://github.com/manlikezlatan/Wayfarer-App#readme"
+}
