@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "A public transportation booking application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +22,13 @@
   },
   "homepage": "https://github.com/manlikezlatan/Wayfarer-App#readme",
   "dependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/node": "^7.5.0",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/register": "^7.4.4",
+    "@babel/runtime": "^7.5.1",
+    "babel-cli": "^6.26.0",
     "eslint-plugin-import": "^2.18.0",
     "express": "^4.17.1",
     "pg": "^7.11.0"
