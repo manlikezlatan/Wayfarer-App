@@ -1,3 +1,4 @@
+// load app dependencies
 import express from 'express';
 
 const app = express();
