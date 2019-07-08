@@ -122,7 +122,6 @@ const dropUsersTable = () => {
     });
 };
 
-
 /**
  * Drop Bus Table
  */
