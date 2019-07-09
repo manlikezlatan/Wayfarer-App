@@ -10,6 +10,13 @@ const Helper = {
   hashPassword(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
   },
+
+  validatePassword(password) {
+    if (password.length <= 8 || password === '') {
+      return false;
+    } return true;
+  },
+
   /**
    * comparePassword
    * @param {string} hashPassword 
@@ -28,7 +35,7 @@ const Helper = {
     return /\S+@\S+\.\S+/.test(email);
   },
   /**
-   * Gnerate Token
+   * Generate Token
    * @param {string} id
    * @returns {string} token
    */
