@@ -3,7 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import '@babel/polyfill'
 import bodyParser from 'body-parser';
-import userRoutes from './routes/userRoute';
+import usersRoutes from './routes/userRoute';
 
 dotenv.config();
 const app = express();
@@ -24,6 +24,6 @@ app.listen(port, () => {
 });
 
 app.use('/api/v1/user', userRoutes);
-app.use('/api/v1/user/signin', userRoutes);
+app.use('/api/v1/user/signin', usersRoutes);
 
 export default app;
