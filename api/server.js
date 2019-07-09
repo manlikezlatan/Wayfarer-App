@@ -1,20 +1,29 @@
 // load app dependencies
 import express from 'express';
-import '@babel/polyfill';
+import dotenv from 'dotenv';
+import '@babel/polyfill'
+import bodyParser from 'body-parser';
+import users from './controllers/userController';
 
+dotenv.config();
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 7000;
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+//app.use(auth);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-    return res.status(200).send('The API is necessary to run this application');
+  return res.status(200).send({
+    message: 'The API is necessary to run this application'
+  });
 });
 
-app.listen(port).on('listening', () => {
-console.log(`This server is live on ${port}`);
+app.listen(port, () => {
+  console.log(`This server is live on ${port}`);
 });
+
+app.post('/api/v1/users', users.create);
 
 export default app;

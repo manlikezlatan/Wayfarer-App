@@ -3,9 +3,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-});
+const dbConfig = { connectionString: process.env.DATABASE_URL };
+const pool = new Pool(dbConfig);
 
 pool.on('connect', () => {
   console.log('connected to wayfarer db');
@@ -40,7 +39,8 @@ const createUsersTable = () => {
  * Create Buses Table
  */
 const createBusTable = () => {
-  const busCreateQuery = `CREATE TABLE IF NOT EXISTS bus
+  const busCreateQuery =
+    `CREATE TABLE IF NOT EXISTS bus
     (bus_id SERIAL PRIMARY KEY,
     number_plate VARCHAR(100) NOT NULL,
     manufacturer VARCHAR(100) NOT NULL,
@@ -64,7 +64,8 @@ const createBusTable = () => {
  * Create Trips Table
  */
 const createTripsTable = () => {
-  const tripCreateQuery = `CREATE TABLE IF NOT EXISTS trip
+  const tripCreateQuery =
+    `CREATE TABLE IF NOT EXISTS trips
     (trip_id SERIAL PRIMARY KEY, 
     bus_id INTEGER REFERENCES bus(bus_id) ON DELETE CASCADE,
     origin VARCHAR(300) NOT NULL, 
@@ -89,12 +90,15 @@ const createTripsTable = () => {
  * Create Bookings Table
  */
 const createBookingsTable = () => {
-  const bookingCreateQuery = `CREATE TABLE IF NOT EXISTS booking(booking_id SERIAL, 
+  const bookingCreateQuery =
+    `CREATE TABLE IF NOT EXISTS booking
+      (booking_id SERIAL, 
       trip_id INTEGER REFERENCES trip(trip_id) ON DELETE CASCADE,
       user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
       bus_id INTEGER REFERENCES bus(bus_id) ON DELETE CASCADE,
       created_on DATE NOT NULL,
       PRIMARY KEY (booking_id, trip_id, user_id, bus_id))`;
+
   pool.query(bookingCreateQuery)
     .then((res) => {
       console.log(res);
@@ -107,7 +111,7 @@ const createBookingsTable = () => {
 };
 
 /**
- * Drop User Table
+ * Drop Users Table
  */
 const dropUsersTable = () => {
   const usersDropQuery = 'DROP TABLE IF EXISTS users returning *';
@@ -123,7 +127,7 @@ const dropUsersTable = () => {
 };
 
 /**
- * Drop Bus Table
+ * Drop Buses Table
  */
 const dropBusTable = () => {
   const busDropQuery = 'DROP TABLE IF EXISTS bus returning *';
@@ -139,7 +143,7 @@ const dropBusTable = () => {
 };
 
 /**
- * Drop Trip Table
+ * Drop Trips Table
  */
 const dropTripsTable = () => {
   const tripDropQuery = 'DROP TABLE IF EXISTS trip returning *';
@@ -155,7 +159,7 @@ const dropTripsTable = () => {
 };
 
 /**
- * Drop Bus Table
+ * Drop Buses Table
  */
 const dropBookingsTable = () => {
   const bookingDropQuery = 'DROP TABLE IF EXISTS booking returning *';
@@ -176,8 +180,8 @@ const dropBookingsTable = () => {
 const createAllTables = () => {
   createUsersTable();
   createBusTable();
-  createTripsTable();
   createBookingsTable();
+  createTripsTable();
 };
 
 /**
@@ -186,8 +190,8 @@ const createAllTables = () => {
 const dropAllTables = () => {
   dropUsersTable();
   dropBusTable();
-  dropTripsTable();
   dropBookingsTable();
+  dropTripsTable();
 };
 
 pool.on('remove', () => {
