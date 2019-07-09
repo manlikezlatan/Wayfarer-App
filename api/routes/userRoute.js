@@ -4,6 +4,6 @@ import createUser from '../controllers/userController';
 const router = express.Router();
 
 // Users Routes
-router.post('/auth/signup', createUser);
+router.post('/', createUser);
 
-module.exports = router;
+export default router;

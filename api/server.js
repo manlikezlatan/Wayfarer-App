@@ -3,7 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import '@babel/polyfill'
 import bodyParser from 'body-parser';
-import users from './controllers/userController';
+import usersRoute from './routes/userRoute';
 
 dotenv.config();
 const app = express();
@@ -24,6 +24,6 @@ app.listen(port, () => {
   console.log(`This server is live on ${port}`);
 });
 
-app.post('/api/v1/users', users.create);
+app.use('/api/v1/users', usersRoute);
 
 export default app;
