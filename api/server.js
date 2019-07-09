@@ -23,7 +23,7 @@ app.listen(port, () => {
   console.log(`This server is live on ${port}`);
 });
 
-app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/user', usersRoutes);
 app.use('/api/v1/user/signin', usersRoutes);
 
 export default app;
