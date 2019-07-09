@@ -3,14 +3,13 @@ import express from 'express';
 import dotenv from 'dotenv';
 import '@babel/polyfill'
 import bodyParser from 'body-parser';
-import usersRoute from './routes/userRoute';
+import usersRoutes from './routes/userRoute';
 
 dotenv.config();
 const app = express();
 
 const port = process.env.PORT || 7000;
 
-//app.use(auth);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -24,6 +23,7 @@ app.listen(port, () => {
   console.log(`This server is live on ${port}`);
 });
 
-app.use('/api/v1/users', usersRoute);
+app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/user/signin', usersRoutes);
 
 export default app;

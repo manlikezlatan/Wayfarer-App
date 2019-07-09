@@ -35,7 +35,7 @@ const Helper = {
     return /\S+@\S+\.\S+/.test(email);
   },
   /**
-   * Gnerate Token
+   * Generate Token
    * @param {string} id
    * @returns {string} token
    */
